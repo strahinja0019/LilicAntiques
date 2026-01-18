@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <link href="fotorama.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/gallery.css">
+  <script src="fotorama.js"></script>
+
+  <!--
+<style>
+    body,
+h1,
+p,button,
+ul{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin:0;
+    padding: 0;
+}
+
+body{
+    line-height: 1.6;
+    color: #333;
+    background-color: #290043;
+}
+header{
+    background-color: #290043;
+}
+@media only screen and (min-width: 600px) {
+header h1{
+    color: #e4d296;
+    margin-top: 20px;
+    margin-left: 41%;
+    font-size: 50px;
+}
+header img{
+    margin-left: 5.498%;
+    margin-top: -112px;
+    height: 198px;
+    width: 300px;
+}
+header div{
+    display: flex;
+}
+header h3{
+    color: #e4d296;
+    margin-top: 45px;
+    margin-left: 240px;
+    font-size: 25px;
+}
+nav{
+    background-color: #290043;
+    display: flex;
+}
+nav ul{
+    list-style: none;
+    padding:40px 0 0 0;
+    margin-left: 0;
+    display: flex
+}
+nav ul li a{
+    font-weight: bold;
+    background-color:#e4d296;
+    font-size: 20px;
+    color: #290043;
+    text-decoration: none;
+    padding: 7px 155px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+nav ul li a:hover{
+    background-color: #290043;
+    color: #e4d296;
+}
+
+
+
+
+
+
+
+
+.anitest{
+    color: white;
+    height: 1300px;
+    background-color: #c785ec;
+    padding: 10px 5px;
+    text-align: center;
+    transition: padding 0.5s ease;
+}
+.anitest h1{
+    margin-bottom: 20px;
+}
+.anitest button{
+    background-color: #005792;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.anitest button:hover{
+    background-color: #013a63;
+}
+.anitest summary ul li a{
+    text-decoration: none;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+ 
+.anitest{
+    animation: fadeIn 3s;
+}
+
+#container{
+    height: 90%;
+    width: 96.28%;
+    background-color: #65218d;
+    margin-top: 1.9%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #e4d296;
+}
+
+footer{
+    text-align: center;
+    background-color: #290043;
+    color: #e4d296;
+    padding: 20px; 
+}
+footer img{
+    height: 75px;
+}
+footer hr{
+    color: #333;
+}
+hr{
+    width:25%; size:2; color:#000000;  border: 1px solid #e4d296;
+}
+footer a{
+    padding-top: 5px;
+    margin: auto;
+    display: block;
+    width: 107.83px;
+    height: 30px;
+    background-color: #e4d296;
+    text-decoration: none;
+    color: #290043;
+    font-weight: bold;
+}
+footer a:hover{
+    background-color: #c785ec;
+    color: white;
+}
+#holds{ 
+    display: flex;
+    justify-content: center;
+}
+
+.fotorama{
+    margin-left: 3%;
+    margin-right: 3%
+}
+
+}
+@media only screen and (max-width: 600px) {
+header h1{
+    text-align: center;
+    color: #e4d296;
+    font-size: 60px;
+    float: left;
+}
+header img{ 
+    height: 100px;
+    width: 100px;
+    align-self: center;
+}
+header h3{
+    text-align: center;
+    color: #e4d296;
+    margin: 0;
+    font-size: 25px;
+}
+nav{
+    background-color: #290043;
+    display: flex;
+    flex-direction:column
+}
+nav ul{
+    text-align: center;
+    list-style: none;
+    margin-left: 0;
+}
+nav ul li{
+    padding: 5px;
+}
+nav ul li a{
+    font-weight: bold;
+    background-color:#e4d296;
+    font-size: 20px;
+    color: #290043;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+nav ul li a:hover{
+    background-color: #290043;
+    color: #e4d296;
+}
+
+
+
+
+
+
+
+
+.anitest{
+    color: white;
+    height: 1365px;
+    background-color: #c785ec;
+    padding: 10px 5px;
+    text-align: center;
+    transition: padding 0.5s ease;
+}
+#container{
+height: 98.2%;
+    width: 98%;
+    background-color: #65218d;
+    margin-top: 1.9%;
+    margin-left: auto;
+    margin-right: auto;
+    color: #e4d296;
+    padding-right: 1%;
+    padding-left: 1%;
+}
+.fotorama__wrap {
+    display: flex;
+    flex-direction: column;
+}
+.anitest h1{
+    margin-bottom: 20px;
+}
+.anitest button{
+    background-color: #005792;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.anitest button:hover{
+    background-color: #013a63;
+}
+.anitest summary ul li a{
+    text-decoration: none;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+ 
+.anitest{
+    animation: fadeIn 3s;
+}
+footer{
+    text-align: center;
+    background-color: #290043;
+    color: #e4d296;
+    padding: 20px; 
+}
+footer img{
+    height: 75px;
+}
+footer hr{
+    color: #333;
+}
+hr{ 
+    width:25%; size:2; color:#000000;  border: 1px solid #e4d296;
+}
+footer a{
+    padding-top: 5px;
+    margin: auto;
+    display: block;
+    width: 107.83px;
+    height: 30px;
+    background-color: #e4d296;
+    text-decoration: none;
+    color: #290043;
+    font-weight: bold;
+}
+footer a:hover{
+    background-color: #c785ec;
+    color: white;
+}
+}
+</style>    
+    -->
+ 
+</head>
+
+<script>
+  $(window).on('load', function () {
+    // This triggers the resize event Fotorama is listening for
+    $(window).trigger('resize');
+  });
+</script>
+ 
+<body>
+  <header>
+    <div><h1>Lilic Antiques</h1><h3>Forever With You</h3></div>
+   
+  <nav>
+    <img src="Images/AL.png" alt="">
+    <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/shop.html">Shop</a></li>
+        <li><a href="/gallery.html">Gallery</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+ 
+<main>
+  <section class="anitest">
+    <div id="container">
+        <h1>Our Products</h1>
+        <hr>
+        <br>
+        <div id="holds">
+        <div class="fotorama" data-width="700" data-ratio="700/467" data-max-width="100%">
+            <img src="Images/Double1.jpg">
+            <img src="Images/Double2.jpg">
+            <img src="Images/Double3.jpeg">
+            <img src="Images/Double4.jpeg">
+            <img src="Images/Double5.jpeg">
+            <img src="Images/Double6.jpeg">
+        </div>
+        <div class="fotorama" data-width="700" data-ratio="700/467" data-max-width="100%">
+            <img src="Images/Sofa1.jpg">  
+            <img src="Images/Sofa2.jpg">  
+            <img src="Images/Sofa3.jpg">  
+            <img src="Images/Sofa4.jpg">  
+            <img src="Images/Sofa5.jpg">  
+            <img src="Images/Sofa6.jpg">  
+        </div>
+    </div>
+        <br>
+        
+        <div id="holds">
+        <div class="fotorama" data-width="700" data-ratio="700/467" data-max-width="100%">
+            <img src="Images/Table1.jpg">
+            <img src="Images/Table2.jpg">
+            <img src="Images/Table3.jpg">
+            <img src="Images/Table4.jpg">
+            <img src="Images/Table5.jpg">
+            <img src="Images/Table6.jpg">
+        </div>
+        <div class="fotorama" data-width="700" data-ratio="700/467" data-max-width="100%">
+            <img src="Images/Devider1.jpg">
+            <img src="Images/Devider2.jpg">
+            <img src="Images/Devider3.jpg">
+            <img src="Images/Devider4.jpg">
+            <img src="Images/Devider5.jpg">
+            <img src="Images/Devider6.jpg">
+        </div>
+            </div>
+    </div>
+
+
+  </section>
+</main>
+ 
+<footer>
+    <p><b>Forever With You</b></p>
+    <hr>
+    <p>Contact Info</p>
+    <br>
+    <p>lilic.antiques@business.com</p>
+    <p>79553161</p>
+    <br>
+    <a href="/contact.html">Contact Us</a>  
+    <br>
+    <img src="Images/rocking.gif" alt="rocking_chair">  
+</footer>
+</body>
+ 
+</html> 

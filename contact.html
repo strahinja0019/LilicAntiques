@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/contact.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+    <script>  
+    $.wait = function(ms) {
+    var defer = $.Deferred();
+    setTimeout(function() { defer.resolve(); }, ms);
+    return defer;
+    };
+    $(document).ready(function() {
+      $('.error').hide();
+      $('#submit').click(function(){
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var message = $('#message').val();
+
+        if(email== ''){
+          $('#email').next().show();
+          $('<queue/>')
+            .delay(1000 /*ms*/)
+            .queue( (next) => { $('#email_empty').hide(); next();} );
+          return false;
+        }
+        if(name== ''){
+          $('#name').next().show();
+          $('<queue/>')
+            .delay(1000 /*ms*/)
+            .queue( (next) => { $('#name_emtpy').hide(); next(); } );
+          return false;
+        }
+        if(message== ''){
+          $('#message').next().show();
+          $('<queue/>')
+            .delay(1000 /*ms*/)
+            .queue( (next) => { $('#message_empty').hide(); next(); } );
+          return false;
+        }
+        if(IsEmail(email)==false){
+          $('#invalid_email').show();
+          $('<queue/>')
+            .delay(1000 /*ms*/)
+            .queue( (next) => { $('#invalid_email').hide(); next(); } );
+
+          return false;
+        }
+        if (IsEmail(email)==true){
+            $('<queue/>')
+            .delay(100 /*ms*/)
+            .queue( (next) => { next(); } );   
+            document.mailtoform.submit();     
+        }
+        $.post("", $("#myform").serialize(),  function(response) {
+          $('#myform').fadeOut('slow',function(){   
+          $('#correct').html(response);
+          $('#correct').fadeIn('slow');
+       });
+     });    
+    return false;
+  });
+ });
+ function IsEmail(email) {
+  var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if(!regex.test(email)) {
+    return false;
+  }else{
+    return true;
+  }
+}
+</script>
+<!--
+<style>
+    body,
+h1,
+p,button,
+ul{
+    margin:0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body{
+    line-height: 1.6;
+    color: #333;
+    background-color: #290043;
+}
+header{
+    background-color: #290043;
+}
+@media only screen and (min-width: 600px) {
+    header h1{
+    color: #e4d296;
+    margin-top: 20px;
+    margin-left: 41%;
+    font-size: 50px;
+}
+header img{
+    margin-left: 5.498%;
+    margin-top: -112px;
+    height: 198px;
+    width: 300px;
+}
+header div{
+    display: flex;
+}
+header h3{
+    color: #e4d296;
+    margin-top: 45px;
+    margin-left: 240px;
+    font-size: 25px;
+}
+nav{
+    background-color: #290043;
+    display: flex;
+}
+nav ul{
+    list-style: none;
+    padding:40px 0 0 0;
+    margin-left: 0;
+    display: flex
+}
+nav ul li a{
+    font-weight: bold;
+    background-color:#e4d296;
+    font-size: 20px;
+    color: #290043;
+    text-decoration: none;
+    padding: 7px 155px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+nav ul li a:hover{
+    background-color: #290043;
+    color: #e4d296;
+}
+#container{
+    height: 90%;    
+    width: 40%;
+    background-color: #65218d;
+    margin-top: 1.9%;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+}
+#name,#email{
+    width: 30%;
+    height: 30px;
+    text-align: center;
+}
+#message{
+    text-align: center;
+}
+
+
+.anitest{
+    color: white;
+    height: 700px;
+    background-color: #c785ec;
+    padding: 10px 5px;
+    text-align: center;
+    transition: padding 0.5s ease;
+}
+.anitest h1{
+    margin-bottom: 20px;
+}
+
+.anitest summary ul li a{
+    text-decoration: none;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+ 
+.anitest{
+    animation: fadeIn 3s;
+}
+footer{
+    text-align: center;
+    background-color: #290043;
+    color: #e4d296;
+    padding: 20px; 
+}
+footer img{
+    height: 75px;
+}
+footer hr{
+    color: #333;
+}
+hr{
+    width:25%; size:2; color:#000000;  border: 1px solid #e4d296;
+}
+footer a{
+    padding-top: 5px;
+    margin: auto;
+    display: block;
+    width: 107.83px;
+    height: 30px;
+    background-color: #e4d296;
+    text-decoration: none;
+    color: #290043;
+    font-weight: bold;
+}
+footer a:hover{
+    background-color: #c785ec;
+    color: white;
+}
+form{
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+#message{
+    height: 200px;
+    width: 50%;
+    resize: none;
+}
+*:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#submit{
+    padding: 0;
+    border: none;
+    width: 107.828px;
+    height: 35px;
+    background-color: #e4d296;
+    color: #290043;
+    font-weight: bold;
+}
+#submit:hover{
+    background-color: #c785ec;
+    color: white;
+    cursor: pointer;
+    
+}
+
+}
+@media only screen and (max-width: 600px) {
+header h1{
+    text-align: center;
+    color: #e4d296;
+    font-size: 60px;
+    float: left;
+}
+header img{ 
+    height: 100px;
+    width: 100px;
+    align-self: center;
+}
+header h3{
+    text-align: center;
+    color: #e4d296;
+    margin: 0;
+    font-size: 25px;
+}
+nav{
+    background-color: #290043;
+    display: flex;
+    flex-direction:column
+}
+nav ul{
+    text-align: center;
+    list-style: none;
+    margin-left: 0;
+}
+nav ul li{
+    padding: 5px;
+}
+nav ul li a{
+    font-weight: bold;
+    background-color:#e4d296;
+    font-size: 20px;
+    color: #290043;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+nav ul li a:hover{
+    background-color: #290043;
+    color: #e4d296;
+}
+
+
+#container{
+    height: 90%;    
+    width: 80%;
+    background-color: #65218d;
+    margin-top: 1.9%;
+    margin-left: auto;
+    margin-right: auto;
+    color: red;
+}
+#name,#email{
+    width: 60%;
+    height: 30px;
+    text-align: center;
+}
+
+
+
+.anitest{
+    color: white;
+    height: 700px;
+    background-color: #c785ec;
+    padding: 10px 5px;
+    text-align: center;
+    transition: padding 0.5s ease;
+}
+.anitest h1{
+    margin-bottom: 20px;
+}
+
+.anitest summary ul li a{
+    text-decoration: none;
+}
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+ 
+.anitest{
+    animation: fadeIn 3s;
+}
+footer{
+    text-align: center;
+    background-color: #290043;
+    color: #e4d296;
+    padding: 20px; 
+}
+footer img{
+    height: 75px;
+}
+footer hr{
+    color: #333;
+}
+hr{ 
+    width:25%; size:2; color:#000000;  border: 1px solid #e4d296;
+}
+footer a{
+    padding-top: 5px;
+    margin: auto;
+    display: block;
+    width: 107.83px;
+    height: 30px;
+    background-color: #e4d296;
+    text-decoration: none;
+    color: #290043;
+    font-weight: bold;
+}
+footer a:hover{
+    background-color: #c785ec;
+    color: white;
+}
+form{
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+#message{
+    text-align: center;
+    height: 200px;
+    width: 80%;
+    resize: none;
+}
+*:focus {
+    outline: none;
+    -webkit-box-shadow: none;   
+    box-shadow: none;
+}
+#submit{
+    padding: 0;
+    border: none;
+    width: 107.828px;
+    height: 35px;
+    background-color: #e4d296;
+    color: #290043;
+    font-weight: bold;
+}
+#submit:hover{
+    background-color: #c785ec;
+    color: white;
+    cursor: pointer;
+    
+}
+}
+</style>
+ -->
+ 
+</head>
+<body>
+  <header>
+    <div><h1>Lilic Antiques</h1><h3>Forever With You</h3></div>
+   
+  <nav>
+    <img src="Images/AL.png" alt="">
+    <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/shop.html">Shop</a></li>
+        <li><a href="/gallery.html">Gallery</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+ 
+<main>
+  <section class="anitest">
+    <div id="container">
+
+        <form name="mailtoform" action="mailto:lilic.antiques@business.com" method="post" enctype="text/plain">
+                <br>
+                <br>
+                <label for="email"></label>
+                <input name="email" id="email" type="text" placeholder="Please enter your email" class="contact-input"><span class="error" id="email_empty">    Enter your email here</span>
+                <span class="error" id="invalid_email">Email is invalid</span>
+
+                <br>
+    
+                <label for="name"></label>
+                <input name="name" id="name" type="text" placeholder="Please enter your name" class="contact-input"><span class="error" id="name_emtpy">Enter your name here</span>
+                
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <label for="message"></label>
+                <textarea id="message" name="message" rows="4" placeholder="Message us"></textarea><span class="error" id="message_empty">Enter your message here</span>
+                <br>
+              <input type="submit" class="contactform-buttons" id="submit" value="Send">
+              </form>
+
+    </div>
+  </section>
+</main>
+ 
+<footer>
+    <p><b>Forever With You</b></p>
+    <hr>
+    <p>Contact Info</p>
+    <br>
+    <p>lilic.antiques@business.com</p>
+    <p>79553161</p>
+    <br>
+    <a href="/contact.html">Contact Us</a>  
+    <br>
+    <img src="Images/rocking.gif" alt="rocking_chair">  
+</footer>
+</body>
+ 
+</html>
